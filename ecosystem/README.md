@@ -51,3 +51,24 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | File | What it shows |
 |------|---------------|
 | `ox.scala` | structured concurrency on virtual threads (JDK 21): `supervised`/`fork`/`forkUser`, `par`, `raceSuccess`, `timeoutOption`, `mapPar`, retries, channels, Flows |
+
+## JSON — `json/`
+
+| File | What it shows |
+|------|---------------|
+| `01_circe.scala` | building JSON, derived & hand-written codecs, decoding errors (fail-fast and accumulating), cursors, transformations, null handling |
+| `02_upickle_jsoniter.scala` | upickle `ReadWriter` (defaults, error paths), the mutable `ujson` AST, MessagePack; jsoniter-scala macro codecs; how to choose |
+
+## HTTP — `http/` (everything runs locally on a random port)
+
+| File | What it shows |
+|------|---------------|
+| `01_http4s.scala` | http4s routes DSL, path/query extractors, JSON bodies, 400 on bad input, Logger middleware, Ember server + client wired with Resource |
+| `02_tapir_sttp.scala` | tapir endpoints as values → Netty direct-style server, typed sttp client and OpenAPI YAML, all from the same definitions |
+
+## Li Haoyi stack — `lihaoyi/`
+
+| File | What it shows |
+|------|---------------|
+| `01_os_lib_requests.scala` | os-lib paths, files, walking, subprocesses with stdin/stdout; `requests` HTTP client against a local server |
+| `02_fastparse.scala` | parser combinators: an arithmetic evaluator, cuts and error messages, whitespace-aware config parser |
