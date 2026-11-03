@@ -39,3 +39,15 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | `02_cats_data_types.scala` | NonEmptyList, Validated(Nec), Chain, Ior, Kleisli, Reader, State, Writer, OptionT/EitherT, Eval |
 | `03_cats_effect.scala` | IO laziness, errors, Resource, fibers (`parTupled`, `race`, `start`/`join`, `timeout`), cancellation, Ref/Deferred/Queue/Semaphore, retry with backoff |
 | `04_fs2_streams.scala` | pure & effectful streams, resource safety, `parEvalMap`, `merge`, `groupWithin`, interruption, file I/O, pipes |
+
+## ZIO — `zio/`
+
+| File | What it shows |
+|------|---------------|
+| `01_zio.scala` | `ZIO[R, E, A]`, typed errors vs defects, `validate`, ZLayer dependency injection, fibers (`<&>`, `foreachPar`, `race`, `timeout`, interruption), Ref, STM, Schedules, Scope, ZStream |
+
+## Direct style — `direct-style/`
+
+| File | What it shows |
+|------|---------------|
+| `ox.scala` | structured concurrency on virtual threads (JDK 21): `supervised`/`fork`/`forkUser`, `par`, `raceSuccess`, `timeoutOption`, `mapPar`, retries, channels, Flows |
