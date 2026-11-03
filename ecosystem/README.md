@@ -72,3 +72,22 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_os_lib_requests.scala` | os-lib paths, files, walking, subprocesses with stdin/stdout; `requests` HTTP client against a local server |
 | `02_fastparse.scala` | parser combinators: an arithmetic evaluator, cuts and error messages, whitespace-aware config parser |
+
+## Data — `data/`
+
+| File | What it shows |
+|------|---------------|
+| `01_doobie.scala` | doobie + in-memory H2: schema, inserts, batch updates, typed queries, composable fragments, joins, transaction rollback, why interpolation prevents SQL injection |
+| `02_spark.scala` | **Scala 2.13** Spark 4 in local mode: typed Datasets, DataFrames, SQL, window functions, query plans, RDD word count (first run downloads ~300 MB) |
+
+## Actors — `actors/`
+
+| File | What it shows |
+|------|---------------|
+| `01_pekko_typed.scala` | Apache Pekko typed actors: behaviors as state, tell & ask, child actors, supervision with restart, serial message processing, timers |
+
+## Refined types — `refined/`
+
+| File | What it shows |
+|------|---------------|
+| `01_iron.scala` | Iron: compile-time checked constants, runtime refinement with Either/Option, `RefinedType` newtypes, zero runtime overhead |
