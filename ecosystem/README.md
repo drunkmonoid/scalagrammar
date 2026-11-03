@@ -91,3 +91,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | File | What it shows |
 |------|---------------|
 | `01_iron.scala` | Iron: compile-time checked constants, runtime refinement with Either/Option, `RefinedType` newtypes, zero runtime overhead |
+
+## Other platforms — `platforms/`
+
+| File | What it shows |
+|------|---------------|
+| `01_scala_js.scala` | Scala.js on Node.js: facades for JS globals and Node modules, `js.Dynamic`, exports, the `js.Date()` vs `new js.Date()` trap, number semantics that differ from the JVM |
+| `02_scala_native.scala` | Scala Native via LLVM: binding C functions, C strings and `Zone`s, pointers, `malloc`/`free`, stack allocation |
+
+Requirements: Node.js for Scala.js, clang/LLVM for Scala Native.
