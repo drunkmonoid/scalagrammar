@@ -1,0 +1,36 @@
+// Mill: a build tool where the build is plain Scala code; tasks are cached methods.
+//
+//   cd ecosystem/build-tools/mill-project
+//   ./mill core.compile          (or `mill` if installed; see https://mill-build.org)
+//   ./mill core.test
+//   ./mill app.run
+//   ./mill -w core.test          # watch mode
+//   ./mill show core.ivyDeps     # inspect a task's value
+//   ./mill resolve __            # list every task
+//   ./mill visualize core.compile
+//
+// Layout differs from sbt: sources live in <module>/src, tests in <module>/test/src.
+// (This file targets Mill 0.12; Mill 1.x uses a similar but updated syntax.)
+package build
+
+import mill._, scalalib._
+
+trait Common extends ScalaModule {
+  def scalaVersion = "3.9.0"
+  def scalacOptions = Seq("-deprecation", "-feature")
+}
+
+object core extends Common {
+  def ivyDeps = Agg(ivy"org.typelevel::cats-core:2.12.0")
+
+  object test extends ScalaTests with TestModule.Munit {
+    def ivyDeps = Agg(ivy"org.scalameta::munit:1.0.3")
+  }
+}
+
+object app extends Common {
+  def moduleDeps = Seq(core)
+
+  // A custom task: ./mill app.hello
+  def hello = Task { println(s"Hello from Mill, Scala ${scalaVersion()}") }
+}

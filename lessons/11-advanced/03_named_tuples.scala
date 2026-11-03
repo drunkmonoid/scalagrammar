@@ -47,7 +47,8 @@ case class City(name: String, population: Int, country: String)
   section("Conversions")
   val plain: (String, Int) = ada                  // named → unnamed: OK (widening)
   println(plain)
-  doesNotCompile("val p: advanced.namedtuples.Person = (\"x\", 1)")   // unnamed → named: needs names
+  val named: Person = ("Cy", 3)                   // unnamed → named also works: names are added
+  println(named.name)
   doesNotCompile("val p: advanced.namedtuples.Person = (age = 1, name = \"x\")")   // order matters
   println(ada.toTuple)                            // explicit drop of names
   val city = City("Porto", 230_000, "PT")

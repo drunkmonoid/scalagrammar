@@ -19,7 +19,7 @@ run_one() {
   local f="$1"
   echo -e "\n\033[1;34m▶ $f\033[0m"
   if [[ -d "$f" ]]; then
-    scala-cli run "$f"            # multi-file lessons (e.g. macros/) run as one program
+    scala-cli run --server=false "$f"   # multi-file lessons (macros/): see macros/project.scala
   elif [[ "$f" == *.test.scala ]]; then
     scala-cli test "$f"
   else
@@ -49,7 +49,7 @@ case "${1:-}" in
     fi
     ;;
   *)
-    if [[ -f "$1" ]]; then
+    if [[ -e "$1" ]]; then
       run_one "$1"
     else
       match=$(all_files lessons | grep -i -- "$1" | head -1 || true)

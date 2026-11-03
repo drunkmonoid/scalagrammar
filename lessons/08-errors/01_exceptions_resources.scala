@@ -47,7 +47,7 @@ class Resource(name: String) extends AutoCloseable:
     println(s"  $i → $res")
 
   section("Exceptions are expressions of type Nothing")
-  val n: Int = Some(5).getOrElse(throw NoSuchElementException("empty"))   // throw: Nothing <: Int
+  val n: Int = Some(5).getOrElse(throw java.util.NoSuchElementException("empty"))   // throw: Nothing <: Int
   println(n)
   val flag = if n > 0 then "positive" else throw IllegalStateException("impossible")
   println(flag)

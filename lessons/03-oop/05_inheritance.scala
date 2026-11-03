@@ -56,7 +56,7 @@ case class Add(a: Expr, b: Expr) extends Expr
     override def reproduce(): Cat = Cat()    // narrower return type: OK
   println(Cat().reproduce().getClass.getSimpleName)
   // Parameter types must match exactly — otherwise it's an overload, not an override:
-  doesNotCompile("class A1 { def f(x: Cat) = 1 }; class A2 extends A1 { override def f(x: Animal) = 2 }")
+  doesNotCompile("class An; class Ca extends An; class A1 { def f(x: Ca) = 1 }; class A2 extends A1 { override def f(x: An) = 2 }")
 
   section("Fields vs methods: static vs dynamic dispatch")
   class Parent:

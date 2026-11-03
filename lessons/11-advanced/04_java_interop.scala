@@ -10,7 +10,6 @@ package advanced.javainterop
 import scala.jdk.CollectionConverters.*
 import scala.jdk.OptionConverters.*
 import scala.jdk.StreamConverters.*
-import scala.jdk.FunctionConverters.*
 import scala.jdk.DurationConverters.*
 import scala.concurrent.duration.*
 import java.util.{ArrayList, HashMap, Optional}
@@ -46,8 +45,13 @@ import java.util.function.{Function as JFunction, Supplier}
   println(List("a", "b").asJavaSeqStream.map(_.toUpperCase).toScala(Vector))
   val jf: JFunction[String, Int] = (s: String) => s.length   // SAM conversion to a Java interface
   println(jf.apply("four"))
-  // asJava picks the most specific java.util.function type, e.g. Int => Int → IntUnaryOperator:
-  println(((x: Int) => x + 1).asJava.getClass.getInterfaces.map(_.getSimpleName).toList)
+  locally {
+    // ⚠ FunctionConverters is imported only in this block: a Seq[Int] is ALSO an Int => Int,
+    //   so with both converters imported at the top, `Seq(1, 2).asJava` would be ambiguous.
+    import scala.jdk.FunctionConverters.*
+    // asJava picks the most specific java.util.function type: Int => Int → IntUnaryOperator
+    println(((x: Int) => x + 1).asJava.getClass.getInterfaces.map(_.getSimpleName).toList)
+  }
   val sup: Supplier[String] = () => "SAM conversion is automatic"
   println(sup.get)
   println(5.seconds.toJava -> java.time.Duration.ofMillis(1500).toScala)

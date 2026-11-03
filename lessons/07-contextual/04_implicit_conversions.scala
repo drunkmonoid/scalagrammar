@@ -43,7 +43,12 @@ def command(args: Arg*): String = args.map {
   section("Conversions don't chain")
   case class Yards(v: Double)
   given Conversion[Yards, Feet] = y => Feet(y.v * 3)
-  doesNotCompile("contextual.conversions.distance(Yards(1))")   // Yards→Feet→Meters: NO
+  // (the snippet re-declares its own Yards: typeCheckErrors can't see local definitions)
+  doesNotCompile("""
+    import contextual.conversions.*, Conversions.given
+    case class Yd(v: Double)
+    given Conversion[Yd, Feet] = y => Feet(y.v * 3)
+    distance(Yd(1))""")                                         // Yd→Feet→Meters: NO
   println(distance(summon[Conversion[Yards, Feet]](Yards(1))))   // apply one explicitly
 
   section("Conversions in the target's companion are found automatically")

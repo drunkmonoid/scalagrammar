@@ -70,7 +70,9 @@ class WithJavaAnnotation:
   println(Compiler +++ "x")
   println(Compiler.getClass.getMethods.map(_.getName).filter(n => n == "plus" || n == "sumStrings").toList)
   println(Compiler.day(2))
-  println(scala.compiletime.testing.typeCheckErrors("summon[meta.annotations.Compiler.Codec[Int]]").map(_.message))
+  // ⚠ `import scala.annotation.*` also imported the PACKAGE scala.annotation.meta, which shadows
+  //   this file's own top-level package `meta` — hence _root_ in the snippet:
+  println(scala.compiletime.testing.typeCheckErrors("summon[_root_.meta.annotations.Compiler.Codec[Int]]").map(_.message))
   println(Compiler.joinAll("a", "b"))
 
   section("Bean properties (generated for Java frameworks; listed via reflection)")
@@ -84,7 +86,9 @@ class WithJavaAnnotation:
   println(s"  Scala @Route visible at runtime: ${classOf[UsersController].getAnnotations.toList}")   // List()
 
   section("Annotations on expressions and types")
-  val x = (42: @unchecked)
+  // ⚠ `import scala.annotation.*` also imports the PACKAGE scala.annotation.unchecked, which
+  //   shadows the @unchecked annotation — so it has to be written fully qualified here:
+  val x = (42: @scala.unchecked)
   val nums: List[Int @uncheckedVariance] = List(1)
   println(x -> nums)
 

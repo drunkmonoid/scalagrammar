@@ -78,9 +78,12 @@ def precise[T <: Singleton](t: T): T = t
   println(valueOf[7])                     // Predef helper
 
   section("Singleton bound")
-  val p = precise(42)                     // p: 42
-  summon[p.type <:< 42]
-  println(p)
+  // Inside `precise`, T is inferred as the singleton type 42 rather than Int.
+  // ⚠ But inferred types of vals (and of type arguments of enclosing calls like List(...))
+  //   are still widened to Int, so annotate when you want to keep the literal type:
+  val p = precise(42)                     // p: Int
+  val q: 42 = precise(42)                 // q: 42
+  println(p -> q)
 
   section("Arithmetic on literal types (see 07 for more)")
   import scala.compiletime.ops.int.+

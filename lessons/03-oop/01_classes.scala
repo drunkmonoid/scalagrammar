@@ -122,7 +122,7 @@ class Dog(name: String) extends Animal(name):
   val o1 = Outer()
   val o2 = Outer()
   val i1: o1.Inner = o1.make
-  doesNotCompile("val i: o2.Inner = o1.make")    // o1.Inner ≠ o2.Inner
+  doesNotCompile("class O { class I; def make: I = I() }; val o1 = O(); val o2 = O(); val i: o2.I = o1.make")
   val anyInner: Outer#Inner = i1                 // type projection = any Outer's Inner
   println(anyInner.getClass.getName)
 

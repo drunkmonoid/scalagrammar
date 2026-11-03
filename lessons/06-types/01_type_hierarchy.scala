@@ -54,7 +54,7 @@ import scala.compiletime.testing.typeCheckErrors
 
   section("AnyVal vs AnyRef capabilities")
   doesNotCompile("1 eq 1")
-  doesNotCompile("1.synchronized { () }")
+  println(1.synchronized { "compiles, with a warning: Suspicious synchronized call on boxed class" })
   println("abc".eq("abc"))
   println(classOf[Int])                          // int
   println(classOf[java.lang.Integer])

@@ -1,12 +1,10 @@
-//> using scala 3.9.0
-// Run the whole directory:  scala-cli run lessons/10-metaprogramming/macros/
+// Run the whole directory:  scala-cli run --server=false lessons/10-metaprogramming/macros/
 
 package meta.macros
 
 import scala.compiletime.testing.typeCheckErrors
 
-case class User(name: String, age: Int, email: String)
-class Plain(val x: Int)
+// User and Plain live in Model.scala
 
 @main def run(): Unit =
   section("debug: source text + value")

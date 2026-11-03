@@ -23,6 +23,8 @@ Each file:
 * demonstrates **code that does not compile** by calling
   `scala.compiletime.testing.typeCheckErrors("...")` and printing the compiler's message.
   You see the compile error *at runtime* without the file itself failing.
+  `typeCheckErrors` only sees errors found while parsing and type checking; errors from later
+  compiler phases (e.g. `@tailrec` checks, some inheritance rules) are quoted in comments instead.
 
 Target: **Scala 3.9.0** on JDK 17+. Scala 2 has its own section (`lessons/12-scala2`), because
 much existing code and many libraries (Spark!) are still written in Scala 2.

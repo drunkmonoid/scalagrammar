@@ -107,10 +107,12 @@ enum LinkedList[+A]:
   section("ADT enums")
   val shapes = List(Shape.Circle(1), Shape.Rectangle(2, 3), Shape.Point)
   shapes.foreach(s => println(f"  $s%-24s area=${s.area}%.2f"))
-  // ⚠ The apply of an enum case returns the ENUM type (widened), not the case type:
-  val c = Shape.Circle(2)                // c: Shape (not Shape.Circle)
-  doesNotCompile("Shape.Circle(2).radius")
-  val c2 = new Shape.Circle(2)           // `new` gives the precise case type
+  // ⚠ An enum case constructor call has the precise case type, but when a val's type is
+  //   INFERRED it is widened to the enum type:
+  println(Shape.Circle(2).radius)        // fine: the expression is a Shape.Circle
+  val c = Shape.Circle(2)                // c: Shape (widened), not Shape.Circle
+  doesNotCompile("val c = oop.enums.Shape.Circle(2); c.radius")
+  val c2: Shape.Circle = Shape.Circle(2) // annotate (or use `new`) to keep the case type
   println(c2.radius)
   println(c.ordinal)                     // ADT cases have ordinals too
   doesNotCompile("Shape.values")         // values only exists if ALL cases are singletons

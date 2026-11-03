@@ -37,7 +37,10 @@ object Show:
 case class Point(x: Int, y: Int)
 object Point:
   given Show[Point] with
-    extension (p: Point) def show = s"Point(${p.x.show}, ${p.y.show})"
+    // ⚠ Inside an extension method named `show`, `p.x.show` would resolve to THIS method
+    //   (the enclosing definition shadows other `show` extensions) and fail to type check.
+    //   Call the Int instance explicitly instead:
+    extension (p: Point) def show = s"Point(${Show[Int].show(p.x)}, ${Show[Int].show(p.y)})"
 
 // ---------- 3. generic API ----------
 def describe[A: Show](a: A): String = s"Value: ${a.show}"

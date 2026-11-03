@@ -1,14 +1,16 @@
 //> using scala 3.9.0
 // Run: scala-cli run lessons/05-collections/07_performance_pitfalls.scala
 //
-// Collection performance traps — measured. Timings are rough (no JIT warm-up control);
-// use JMH (sbt-jmh) for real benchmarks. The point is the order of magnitude.
+// Collection performance traps — measured. Each body runs once to warm up the JIT, then once
+// timed. Timings are still rough: use JMH (sbt-jmh) for real benchmarks. Look at orders of
+// magnitude, not small differences.
 
 package collections.performance
 
 import scala.collection.mutable
 
 def time[A](label: String)(body: => A): A =
+  body                                   // warm-up run (JIT compilation, class loading)
   val t0 = System.nanoTime()
   val r = body
   println(f"  $label%-50s ${(System.nanoTime() - t0) / 1e6}%8.2f ms")
@@ -49,9 +51,11 @@ def time[A](label: String)(body: => A): A =
 
   section("6. Boxing: generic collections box primitives")
   val arr = Array.range(0, 1_000_000)
-  time("Array[Int].sum (unboxed)") { arr.sum }
-  time("Vector[Int].sum (boxed Integers)") { big.sum }
-  time("while loop over Array") { var i = 0; var s = 0L; while i < arr.length do { s += arr(i); i += 1 }; s }
+  // ⚠ `sum` is generic (it goes through Numeric[Int]), so even on an Array[Int] each element
+  //   is boxed; only a hand-written loop over the primitive array avoids boxing entirely.
+  time("Array[Int].sum (generic, boxes per element)") { arr.sum }
+  time("Vector[Int].sum (elements stored boxed)") { big.sum }
+  time("while loop over Array (no boxing)") { var i = 0; var s = 0L; while i < arr.length do { s += arr(i); i += 1 }; s }
 
   section("7. String concatenation in a loop")
   time("String += in a loop") { var s = ""; for i <- 1 to 5000 do s += i; s.length }

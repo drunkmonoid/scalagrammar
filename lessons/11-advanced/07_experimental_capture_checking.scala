@@ -32,12 +32,15 @@ def withFile[T](body: FileHandle^ => T): T =
   withFile { f => f.write("hello") }          // fine: the result (Unit) doesn't capture f
   val n = withFile { f => f.write("x"); 42 }  // fine: Int is pure
   println(n)
-  // ⚠ Leaking the handle through a closure is rejected at COMPILE time:
+  // ⚠ Leaking the handle through a closure is rejected at COMPILE time. Capture checking runs
+  //   after type checking, so typeCheckErrors can't show it; this is the real compiler output:
+  //
   //   val leaked = withFile { f => () => f.write("too late") }
-  //   error: the result type captures f, which is not allowed to escape
-  println(scala.compiletime.testing.typeCheckErrors(
-    "advanced.experimental.withFile { f => () => f.write(\"too late\") }"
-  ).map(_.message.linesIterator.next()))
+  //   → Capability `f` outlives its scope: it leaks into outer capture set 's1 which is
+  //     owned by value leaked.
+  //     Found:    (f: FileHandle^) ->'s2 () ->{f} Unit
+  //     Required: FileHandle^ => () ->'s1 Unit
+  println("leaking closure: rejected by the compiler (see comment)")
 
   println("\n=== Other experimental / preview features to know about ===")
   // * Named type arguments:            f[B = Int](...)                (-language:experimental.namedTypeArguments)

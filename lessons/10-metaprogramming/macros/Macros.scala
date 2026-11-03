@@ -1,5 +1,4 @@
-//> using scala 3.9.0
-// Run the whole directory:  scala-cli run lessons/10-metaprogramming/macros/
+// Run the whole directory:  scala-cli run --server=false lessons/10-metaprogramming/macros/
 //
 // Quoted macros: code that runs INSIDE the compiler and returns code.
 //   '{ ... }   quote:  turns code into an Expr[T] (a typed syntax tree)
@@ -40,11 +39,18 @@ def powImpl(x: Expr[Double], n: Expr[Int])(using Quotes): Expr[Double] =
     else '{ $x * ${ go(k - 1) } }
   go(n.valueOrAbort)
 
-inline def powCode(x: Double, inline n: Int): String = ${ Expr(powImpl('x, 'n).show) }
+// ⚠ The body of a top-level splice must be ONE call to a method taking quoted arguments,
+//   so `${ Expr(powImpl('x, 'n).show) }` is rejected; wrap it in its own impl method.
+inline def powCode(x: Double, inline n: Int): String = ${ powCodeImpl('x, 'n) }
+
+def powCodeImpl(x: Expr[Double], n: Expr[Int])(using Quotes): Expr[String] =
+  Expr(powImpl(x, n).show)
 
 // ---------- 4. quote pattern matching: a tiny optimiser ----------
 inline def simplify(inline e: Int): Int = ${ simplifyImpl('e) }
-inline def simplifyCode(inline e: Int): String = ${ Expr(simplifyImpl('e).show) }
+inline def simplifyCode(inline e: Int): String = ${ simplifyCodeImpl('e) }
+
+def simplifyCodeImpl(e: Expr[Int])(using Quotes): Expr[String] = Expr(simplifyImpl(e).show)
 
 def simplifyImpl(e: Expr[Int])(using Quotes): Expr[Int] = e match
   case '{ ($x: Int) * 1 }         => simplifyImpl(x)

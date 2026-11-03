@@ -11,7 +11,7 @@ package advanced.puzzlers
     val xs = List(1, 2, 3)
     xs.toSet.map((x: Int) => x / 2).sum      // ?
   }
-  // 2 — {0, 1, 1} collapses to Set(0, 1). map on a Set returns a Set.
+  // 1 — 1/2, 2/2, 3/2 are 0, 1, 1, which collapse to Set(0, 1): map on a Set returns a Set.
 
   puzzle("2. Default arguments and overriding") {
     class A { def f(x: Int = 1) = x }
@@ -51,7 +51,16 @@ package advanced.puzzlers
     class C extends T { override val a = 1 }
     C().b                                     // ?
   }
-  // 0 — when T's initializer computes b, C's override of `a` isn't initialised yet (0).
+  // 20 in Scala 3 — but 0 in Scala 2.13 for the very same code! Scala 2 called C's getter for
+  // `a` while T was initialising, before C had set its field. Scala 3 reads T's own value here.
+
+  puzzle("7b. Overriding a def with a val") {
+    trait V { def a: Int = 10; val b = a * 2 }
+    class E extends V { override val a = 1 }
+    E().b                                     // ?
+  }
+  // 0 in both Scala 2 and 3 — `a` is a virtual method call that reaches E's field before
+  // E's constructor has assigned it. Abstract vals behave the same (see 03-oop/03_traits).
 
   puzzle("8. Map.mapValues is lazy") {
     var calls = 0

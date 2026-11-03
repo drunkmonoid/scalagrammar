@@ -47,7 +47,7 @@ enum Color:
   println(7.squared)
   println(Color.values.toList)
 
-  println("\n=== Things that changed meaning or were removed (compile errors in 3) ===")
+  println("\n=== Removed or deprecated syntax (errors, or warnings where noted) ===")
   def err(code: String, errs: List[scala.compiletime.testing.Error]): Unit =
     println(s"  ${code.padTo(38, ' ')} → ${errs.headOption.map(_.message.linesIterator.next()).getOrElse("compiles (maybe with a warning)")}")
   err("def p() { }   // procedure syntax", typeCheckErrors("def p() { }"))
@@ -56,7 +56,7 @@ enum Color:
   err("forSome       // existential types", typeCheckErrors("def f(x: List[T] forSome { type T }) = 1"))
   err("do-while", typeCheckErrors("do { () } while (false)"))
   err("auto-application of ()-methods", typeCheckErrors("def m() = 1; val x: Int = m"))
-  err("Int + String via any2stringadd?", typeCheckErrors("val o = new Object; o + \"x\""))
+  err("obj + \"x\" (any2stringadd removed)", typeCheckErrors("val o = new Object; o + \"x\""))
 
   println("\n=== Semantic changes worth knowing ===")
   // * Implicit resolution: different priority rules; implicit conversions need an import

@@ -23,7 +23,7 @@ import scala.compiletime.testing.typeCheckErrors
   println(0xFF)                   // hex → 255
   println(0b1010)                 // binary → 10
   println(100L)                   // Long; lowercase 'l' is deprecated (looks like 1)
-  doesNotCompile("val x = 012")   // leading-zero octal literals are an error
+  println(012)                    // ⚠ 12 — NOT octal (Java/C would give 10); avoid leading zeros
   doesNotCompile("val i: Int = 3000000000")  // too large for Int
 
   section("Floating literals")
@@ -32,7 +32,9 @@ import scala.compiletime.testing.typeCheckErrors
   println(1e3)                    // 1000.0
   println(.5)                     // 0.5
   println(1d)                     // 1.0
-  doesNotCompile("val f: Float = 1.5")   // Double does not narrow to Float
+  val narrowed: Float = 1.1       // a Double LITERAL is narrowed to Float when the type asks for it
+  println(narrowed)
+  doesNotCompile("val d = 1.5; val f: Float = d")   // but a Double VALUE is never narrowed
 
   section("Char and Boolean literals")
   println('a')

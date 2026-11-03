@@ -26,14 +26,17 @@ import scala.compiletime.testing.typeCheckErrors
   println(box("a", 5))
   println(box("a", fill = '#'))          // skip width by naming
   println(box(fill = '-', content = "b")) // any order when named
-  // Defaults may refer to EARLIER parameters:
-  def range(from: Int, to: Int = from + 3) = from to to
-  println(range(5))
+  // Defaults may refer to parameters of EARLIER parameter lists…
+  def range(from: Int)(to: Int = from + 3) = from to to
+  println(range(5)())
+  // ⚠ …but not to other parameters of the SAME list:
+  doesNotCompile("def r(from: Int, to: Int = from + 3) = to")
   // ⚠ Defaults are evaluated at EACH call, not once (unlike Python):
   def stamp(xs: List[Long] = List(System.nanoTime())) = xs.head
   println(stamp() != stamp())            // true
   // ⚠ positional after named is not allowed unless in position:
-  doesNotCompile("""box(width = 3, "x")""")
+  // (typeCheckErrors can't see local definitions, so the snippet defines its own `box`)
+  doesNotCompile("""def box(content: String, width: Int = 10) = content; box(width = 3, "x")""")
 
   section("Varargs (repeated parameters)")
   def sum(xs: Int*): Int = xs.sum        // xs: Seq[Int]

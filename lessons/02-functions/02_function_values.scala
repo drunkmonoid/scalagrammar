@@ -29,9 +29,12 @@ import scala.compiletime.testing.typeCheckErrors
   println(List(1, 2, 3).map(_ + 1))
   // ⚠ the placeholder expands to the SMALLEST enclosing expression that is not just `_`:
   println(List(1, 2, 3).map(_ * 2 + 1))     // x => x * 2 + 1
-  // ⚠ ... but nested calls stop the expansion:
-  // `math.abs(_)` is x => math.abs(x), so `math.abs(_) + 1` means (x => math.abs(x)) + 1:
-  doesNotCompile("List(1, 2).map(math.abs(_) + 1)")
+  // The `_` is bound by the smallest enclosing expression that properly contains it — here
+  // the whole infix expression, so this is x => math.abs(x) + 1:
+  println(List(1, -2).map(math.abs(_) + 1))  // List(2, 3)
+  // ⚠ ...but an ARGUMENT is itself an expression, so a `_` nested inside an inner call binds
+  // to that inner argument: math.abs(math.max(_, 0)) means math.abs(x => math.max(x, 0)):
+  doesNotCompile("List(1, -2).map(math.abs(math.max(_, 0)))")
   // ⚠ you cannot use one parameter twice with _ :
   doesNotCompile("val sq: Int => Int = _ * _")   // that's a 2-arg function
   // ⚠ `_` inside a nested function literal belongs to THAT literal

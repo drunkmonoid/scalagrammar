@@ -17,17 +17,22 @@
 
 package basics.hello
 
-// (1) @main with typed parameters.
-// The compiler generates a class named `greet` with a real `main(Array[String])`
-// that parses each argument using a `scala.util.CommandLineParser.FromString[T]` instance.
-// Missing / unparsable args produce an error message instead of a stack trace.
-// Default values make arguments optional (so this file also runs with no args).
-@main def greet(name: String = "world", times: Int = 2): Unit =
+// (1) @main methods.
+// The compiler generates a class named `greet` with a real `main(Array[String])`.
+// Parameters can be typed (see `serve` below): each argument is parsed with a
+// `scala.util.CommandLineParser.FromString[T]` instance, and missing / unparsable args
+// produce an error message instead of a stack trace.
+// ⚠ Default parameter values are NOT used by the generated main: running `serve` with no
+//   arguments prints "Illegal command line: more arguments expected".
+// A varargs parameter collects everything, so `greet` handles optional arguments itself:
+@main def greet(args: String*): Unit =
+  val name = args.headOption.getOrElse("world")
+  val times = args.lift(1).flatMap(_.toIntOption).getOrElse(2)
   for i <- 1 to times do println(s"[$i] Hello, $name!")
 
   section("Program arguments")
-  // Varargs: `@main def run(args: String*)` collects everything.
-  println("`@main def f(xs: Int*)` collects all remaining args as a Seq[Int]")
+  println(s"args = $args")
+  println("`@main def f(xs: Int*)` would parse every argument as an Int")
 
   section("What did the compiler generate?")
   // The generated wrapper class has the same name as the method, in this package.

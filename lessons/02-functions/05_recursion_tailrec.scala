@@ -25,11 +25,18 @@ import scala.util.control.TailCalls.*
   println(factTR(20_000).toString.length + " digits")   // no stack overflow
 
   section("@tailrec makes the compiler check")
-  doesNotCompile("@scala.annotation.tailrec def f(n: Int): Int = if n == 0 then 0 else 1 + f(n - 1)")
-  // ⚠ the method must be final or private (or local/in an object) — overridable methods
-  //   can't be optimised because a subclass could change the call target:
-  doesNotCompile("class C { @scala.annotation.tailrec def g(n: Int): Int = if n == 0 then 0 else g(n - 1) }")
-  println("class C { final def g ... } would compile")
+  // These errors are reported by the tailrec PHASE, which runs after type checking, so
+  // `typeCheckErrors` can't show them here. Real compiler output, for reference:
+  //
+  //   @tailrec def f(n: Int): Int = if n == 0 then 0 else 1 + f(n - 1)
+  //   → Cannot rewrite recursive call: it is not in tail position
+  //
+  // ⚠ the method must be final or private (or local / in an object) — an overridable
+  //   method can't be optimised because a subclass could change the call target:
+  //   class C { @tailrec def g(n: Int): Int = if n == 0 then 0 else g(n - 1) }
+  //   → TailRec optimisation not applicable, method g is neither private nor final
+  //     so can be overridden
+  println("see comments (errors from a later compiler phase)")
 
   section("Mutual recursion is NOT optimised by scalac (JVM has no TCO)")
   def isEven(n: Int): Boolean = if n == 0 then true else isOdd(n - 1)

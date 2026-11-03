@@ -44,7 +44,8 @@ package collections.laziness
   val evens = naturals.filter(_ % 2 == 0)
   println(evens.take(3).toList)
   // Self-referential definitions (#:: is lazy in both head and tail)
-  val fibs: LazyList[BigInt] = BigInt(0) #:: BigInt(1) #:: fibs.zip(fibs.tail).map(_ + _)
+  // (a LOCAL self-reference must be a lazy val; a member val would also work)
+  lazy val fibs: LazyList[BigInt] = BigInt(0) #:: BigInt(1) #:: fibs.zip(fibs.tail).map(_ + _)
   println(fibs(80))
   // Memoisation: elements are computed once
   val noisy = LazyList.from(1).map { x => println(s"  computing $x"); x }

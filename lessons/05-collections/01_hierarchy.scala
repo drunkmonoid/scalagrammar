@@ -31,7 +31,7 @@ import scala.collection.mutable
   val v = Vector(1, 2, 3)
   val st = Set(1, 2, 3)
   val m = Map("a" -> 1)
-  println(s"Seq() → ${s.getClass.getSimpleName}")          // List
+  println(s"Seq() → ${s.getClass.getSimpleName}")          // $colon$colon, i.e. `::` — a List cell
   println(s"IndexedSeq() → ${is.getClass.getSimpleName}")  // Vector (Vector1)
   println(s"Set(1,2,3) → ${st.getClass.getSimpleName}")    // Set3 — specialised small sets!
   println(s"Set of 5 → ${Set(1, 2, 3, 4, 5).getClass.getSimpleName}")  // HashSet
@@ -79,7 +79,8 @@ import scala.collection.mutable
   section("Equality across collection types")
   println(List(1, 2) == Vector(1, 2))       // true — both Seqs
   println(Set(1, 2) == collection.immutable.TreeSet(2, 1))   // true — both Sets
-  println(List(1, 2) == Set(1, 2))          // false — different categories
+  // ⚠ Seq vs Set can never be equal, and Scala 3 rejects the comparison at compile time:
+  println(scala.compiletime.testing.typeCheckErrors("List(1, 2) == Set(1, 2)").map(_.message))
   println(Array(1, 2) == Array(1, 2))       // ⚠ false — arrays are Java arrays (reference eq)
   println(Array(1, 2).sameElements(Array(1, 2)))  // true
 

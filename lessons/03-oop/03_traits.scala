@@ -74,10 +74,12 @@ case object One extends Tagged
 case object Two extends Tagged
 
 // ---------- traits with conflicting members ----------
-trait Left_  { def who = "left" }
-trait Right_ { def who = "right" }
-class Both extends Left_, Right_:
-  override def who = super[Left_].who + "&" + super[Right_].who   // qualified super
+// (⚠ Naming these `Left_`/`Right_` breaks `extends Left_, Right_:` — an identifier may end
+//  in `_` followed by operator characters, so `Right_:` lexes as ONE identifier.)
+trait LeftSide  { def who = "left" }
+trait RightSide { def who = "right" }
+class Both extends LeftSide, RightSide:
+  override def who = super[LeftSide].who + "&" + super[RightSide].who   // qualified super
 
 @main def run(): Unit =
   section("Abstract + concrete members")
@@ -105,7 +107,10 @@ class Both extends Left_, Right_:
   section("Trait parameters")
   println(EnglishGreeter().greet("Ada"))
   println(FormalEnglish().greet("Ada"))
-  doesNotCompile("class Bad extends EnglishGreeter, Greeting(\"Hi\")")  // passed twice
+  // Passing the argument twice is caught in a later compiler phase (so not via typeCheckErrors):
+  //   class Bad extends EnglishGreeter, Greeting("Hi")
+  //   → trait Greeting is already implemented by superclass EnglishGreeter,
+  //     its constructor cannot be called again
   doesNotCompile("class NoArgs extends Greeting")                        // never passed
 
   section("Self types")
