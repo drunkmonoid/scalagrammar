@@ -12,7 +12,12 @@ scala-cli run lessons/01-basics/01_hello.scala
 ./run.sh variance            # runs the first lesson whose path contains "variance"
 ./run.sh --list              # list every lesson
 ./run.sh --all lessons/03-oop  # run every lesson under a directory (regression check)
+./run.sh ecosystem/testing/munit.test.scala   # *.test.scala files run with `scala-cli test`
 ```
+
+A few lessons need more than one file or a specific tool; their headers say how to run them:
+`lessons/10-metaprogramming/macros/` (a directory, run with `--server=false`), the sbt and Mill
+sample projects in `ecosystem/build-tools/`, Scala.js (Node.js) and Scala Native (clang).
 
 Each file:
 
@@ -26,8 +31,10 @@ Each file:
   `typeCheckErrors` only sees errors found while parsing and type checking; errors from later
   compiler phases (e.g. `@tailrec` checks, some inheritance rules) are quoted in comments instead.
 
-Target: **Scala 3.9.0** on JDK 17+. Scala 2 has its own section (`lessons/12-scala2`), because
-much existing code and many libraries (Spark!) are still written in Scala 2.
+Target: **Scala 3.9.0** on JDK 17+ (a few files ask scala-cli for JDK 21). Scala 2 has its own
+section (`lessons/12-scala2`), because much existing code and some libraries (Spark!) are still
+Scala 2. Every file has been compiled and run with scala-cli 1.18; dependency versions are the
+current releases as of November 2026.
 
 ---
 
@@ -42,30 +49,30 @@ much existing code and many libraries (Spark!) are still written in Scala 2.
 | 03 | **OOP** | classes · objects & companions · traits & linearization · case classes · inheritance & init order · enums & ADTs · access modifiers · extension methods · export clauses · universal apply / creator applications |
 | 04 | **Pattern matching** | every pattern form · extractors · exhaustiveness & sealed · type tests & erasure |
 | 05 | **Collections** | hierarchy · sequences · sets & maps · the operations catalogue · views, iterators, LazyList · mutable collections · Arrays (the weird one) · performance & pitfalls |
-| 06 | **Types** | type hierarchy · generics & variance · bounds · type members & path-dependent types · union & intersection · higher-kinded types · type lambdas & match types · structural types · singleton & literal types · dependent & polymorphic functions · opaque types |
+| 06 | **Types** | type hierarchy · generics & variance · bounds · type members & path-dependent types · union & intersection · higher-kinded types · type lambdas & match types · structural types · singleton & literal types · opaque types (dependent & polymorphic *function* types are in 02) |
 | 07 | **Contextual abstractions** | given/using · type classes · derivation & Mirrors · implicit conversions · context functions · given imports & resolution rules |
 | 08 | **Errors** | exceptions · Option/Either/Try · boundary/break · accumulating validation |
-| 09 | **Concurrency** | threads, JMM, synchronization · Futures & Promises · virtual threads & structured concurrency |
+| 09 | **Concurrency** | threads, JMM, synchronization · Futures & Promises · virtual threads (structured concurrency: see Ox in Part II) |
 | 10 | **Metaprogramming** | inline · compiletime ops · quoted macros · TASTy reflection · annotations |
-| 11 | **Advanced** | for-comprehension desugaring · multiversal equality · named tuples · tuples as HLists · Java interop · capture checking (experimental) · experimental features · puzzlers |
+| 11 | **Advanced** | for-comprehension desugaring · multiversal equality · named tuples · Java interop · tuples as HLists · explicit nulls · capture checking & other experimental features · puzzlers |
 | 12 | **Scala 2** | implicits & 2.x idioms · migration to Scala 3 |
 
 ### Part II — The ecosystem (`ecosystem/`)
 
-| Area | Files |
+| Folder | Contents |
 |------|-------|
-| Build tools | scala-cli directives · sbt sample project · Mill sample project |
-| Testing | MUnit · ScalaTest · ScalaCheck (property testing) |
-| Typelevel | cats (type classes, data types) · cats-effect (IO, fibers, resources) · fs2 (streams) |
-| ZIO | ZIO effects, layers, streams |
-| Direct style | Ox (structured concurrency on virtual threads) |
-| JSON | circe · upickle |
-| HTTP | sttp client · http4s server · tapir endpoints |
-| Li Haoyi stack | os-lib · requests · upickle · fastparse |
-| Data / DB | doobie (with in-memory H2) · Spark (Scala 2.13) |
-| Actors | Apache Pekko (Akka fork) typed actors |
-| Refined types | Iron |
-| Other platforms | Scala.js · Scala Native |
+| `build-tools/` | scala-cli directives · sbt 1.13 multi-module project · Mill 1.3 project |
+| `testing/` | MUnit · ScalaTest · ScalaCheck (property testing) |
+| `typelevel/` | cats type classes · cats data types · cats-effect (IO, fibers, Resource) · fs2 streams |
+| `zio/` | ZIO: typed errors, layers, fibers, STM, schedules, ZStream |
+| `direct-style/` | Ox: structured concurrency on virtual threads |
+| `json/` | circe · upickle · jsoniter-scala |
+| `http/` | http4s server + client · tapir endpoints → server, sttp client, OpenAPI |
+| `lihaoyi/` | os-lib · requests · fastparse |
+| `data/` | doobie (in-memory H2) · Spark (Scala 2.13, local mode) |
+| `actors/` | Apache Pekko typed actors |
+| `refined/` | Iron refined types |
+| `platforms/` | Scala.js · Scala Native |
 
 See [`ecosystem/README.md`](ecosystem/README.md) for notes on each.
 

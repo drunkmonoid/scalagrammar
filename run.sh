@@ -11,8 +11,9 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 all_files() {
-  find "${1:-lessons}" ecosystem -name '*.scala' 2>/dev/null \
-    | grep -v '/sbt-project/\|/mill-project/\|/macros/' | sort
+  { find "${1:-lessons}" ecosystem -name '*.scala' 2>/dev/null \
+      | grep -v '/sbt-project/\|/mill-project/\|/macros/'
+    find "${1:-lessons}" ecosystem -type d -name macros -not -path '*/.scala-build/*' 2>/dev/null; } | sort
 }
 
 run_one() {
@@ -40,7 +41,7 @@ case "${1:-}" in
     while read -r f; do
       run_one "$f" || failed+=("$f")
     done < <({ find "$dir" -name '*.scala' | grep -v '/sbt-project/\|/mill-project/\|/macros/'
-               find "$dir" -type d -name macros; } | sort)
+               find "$dir" -type d -name macros -not -path '*/.scala-build/*'; } | sort)
     echo
     if ((${#failed[@]})); then
       echo -e "\033[1;31m${#failed[@]} failed:\033[0m"; printf '  %s\n' "${failed[@]}"; exit 1
