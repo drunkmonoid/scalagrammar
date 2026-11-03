@@ -1,5 +1,5 @@
 //> using scala 3.9.0
-//> using dep com.lihaoyi::pprint:0.9.0
+//> using dep com.lihaoyi::pprint:0.9.6
 //> using options -deprecation -feature -Wunused:all
 //> using javaOpt -Xmx512m
 //> using resourceDir ./resources
@@ -44,7 +44,7 @@ package ecosystem.scalacli
   pprint.pprintln(Config("demo", List(80, 443), Map("ratio" -> Some(0.5), "none" -> None)))
 
   println("\n=== a classpath resource from //> using resourceDir ===")
-  val res = Option(getClass.getResourceAsStream("/greeting.txt"))
+  val res = Option(Thread.currentThread.getContextClassLoader.getResourceAsStream("greeting.txt"))
   println(res.map(scala.io.Source.fromInputStream(_).mkString.trim).getOrElse("<missing>"))
 
   println("\n=== JVM options from //> using javaOpt ===")

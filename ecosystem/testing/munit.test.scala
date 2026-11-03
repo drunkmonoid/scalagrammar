@@ -1,5 +1,5 @@
 //> using scala 3.9.0
-//> using test.dep org.scalameta::munit:1.0.3
+//> using test.dep org.scalameta::munit:1.3.6
 // Run: scala-cli test ecosystem/testing/munit.test.scala
 //      scala-cli test ecosystem/testing/munit.test.scala -- '*Fixtures*'   (filter by suite)
 //
@@ -29,7 +29,8 @@ class SlugSuite extends munit.FunSuite:
   test("assertions: assert, assertNotEquals, assertNoDiff, intercept") {
     assert(Slug("a").nonEmpty, "slug should not be empty")
     assertNotEquals(Slug("a b"), "a b")
-    assertNoDiff("  multi\n  line  ", "multi\nline")          // ignores whitespace differences
+    // assertNoDiff trims the WHOLE text (not each line) and prints a line diff on failure:
+    assertNoDiff("\n  multi\nline\n\n", "multi\nline")
     val e = intercept[NumberFormatException]("x".toInt)
     assert(e.getMessage.contains("x"))
     interceptMessage[ArithmeticException]("/ by zero")(1 / 0)
@@ -50,7 +51,7 @@ class SlugSuite extends munit.FunSuite:
          |Found:    ("s" : String)
          |Required: Int
          |val x: Int = "s"
-         |             ^
+         |            ^
          |""".stripMargin
     )
   }

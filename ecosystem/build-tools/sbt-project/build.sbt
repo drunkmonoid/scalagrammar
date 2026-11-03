@@ -1,4 +1,6 @@
-// sbt: the most widely used Scala build tool.
+// sbt: the most widely used Scala build tool. This sample uses sbt 1.13 (project/build.properties).
+// sbt 2.0 is also available: builds are compiled with Scala 3 and tasks are cached remotely-capable,
+// but plugin support is still catching up, so most existing projects are on 1.x.
 //
 //   cd ecosystem/build-tools/sbt-project
 //   sbt                 # interactive shell (fast: the JVM stays warm)
@@ -25,8 +27,8 @@ lazy val core = project
   .settings(
     name := "core",
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-core" % "2.12.0",
-      "org.scalameta" %% "munit"     % "1.0.3" % Test,
+      "org.typelevel" %% "cats-core" % "2.13.0",
+      "org.scalameta" %% "munit"     % "1.3.6" % Test,
     ),
   )
 

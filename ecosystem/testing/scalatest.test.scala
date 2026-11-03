@@ -1,5 +1,5 @@
 //> using scala 3.9.0
-//> using test.dep org.scalatest::scalatest:3.2.19
+//> using test.dep org.scalatest::scalatest:3.2.20
 // Run: scala-cli test ecosystem/testing/scalatest.test.scala
 //
 // ScalaTest: the most widely used Scala testing library. It offers many "styles"

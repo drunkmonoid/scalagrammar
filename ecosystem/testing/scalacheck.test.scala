@@ -1,5 +1,5 @@
 //> using scala 3.9.0
-//> using test.dep org.scalameta::munit-scalacheck:1.0.0
+//> using test.dep org.scalameta::munit-scalacheck:1.3.1
 // Run: scala-cli test ecosystem/testing/scalacheck.test.scala
 //
 // Property-based testing with ScalaCheck: instead of hand-picked examples, state a PROPERTY
@@ -87,6 +87,6 @@ class PropertiesSuite extends munit.ScalaCheckSuite:
   test("show a shrunk counter-example without failing the suite") {
     val result = org.scalacheck.Test.check(org.scalacheck.Test.Parameters.default,
       forAll((xs: List[Int]) => xs.sum < 100))
-    println(s"  ScalaCheck result: ${result.status}")
+    println(org.scalacheck.util.Pretty.pretty(result).linesIterator.map("  " + _).mkString("\n"))
     assert(!result.passed)
   }
