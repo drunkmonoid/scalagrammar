@@ -18,7 +18,9 @@ all_files() {
 run_one() {
   local f="$1"
   echo -e "\n\033[1;34m▶ $f\033[0m"
-  if [[ "$f" == *.test.scala ]]; then
+  if [[ -d "$f" ]]; then
+    scala-cli run "$f"            # multi-file lessons (e.g. macros/) run as one program
+  elif [[ "$f" == *.test.scala ]]; then
     scala-cli test "$f"
   else
     scala-cli run "$f"
@@ -37,7 +39,8 @@ case "${1:-}" in
     failed=()
     while read -r f; do
       run_one "$f" || failed+=("$f")
-    done < <(find "$dir" -name '*.scala' | grep -v '/sbt-project/\|/mill-project/\|/macros/' | sort)
+    done < <({ find "$dir" -name '*.scala' | grep -v '/sbt-project/\|/mill-project/\|/macros/'
+               find "$dir" -type d -name macros; } | sort)
     echo
     if ((${#failed[@]})); then
       echo -e "\033[1;31m${#failed[@]} failed:\033[0m"; printf '  %s\n' "${failed[@]}"; exit 1
