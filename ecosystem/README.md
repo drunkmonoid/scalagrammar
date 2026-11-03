@@ -30,3 +30,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | `munit.test.scala` | assertions, expected failures, `compileErrors`, async tests, fixtures, generated tests |
 | `scalatest.test.scala` | FunSuite / FlatSpec / WordSpec styles, matchers, futures, pending & ignored |
 | `scalacheck.test.scala` | property-based testing, custom generators, shrinking |
+
+## Typelevel stack — `typelevel/`
+
+| File | What it shows |
+|------|---------------|
+| `01_cats_typeclasses.scala` | Eq, Show, Order, Semigroup/Monoid, Functor, Applicative, Monad, Traverse, Foldable, Either syntax; deriving with kittens |
+| `02_cats_data_types.scala` | NonEmptyList, Validated(Nec), Chain, Ior, Kleisli, Reader, State, Writer, OptionT/EitherT, Eval |
+| `03_cats_effect.scala` | IO laziness, errors, Resource, fibers (`parTupled`, `race`, `start`/`join`, `timeout`), cancellation, Ref/Deferred/Queue/Semaphore, retry with backoff |
+| `04_fs2_streams.scala` | pure & effectful streams, resource safety, `parEvalMap`, `merge`, `groupWithin`, interruption, file I/O, pipes |
