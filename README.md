@@ -91,3 +91,8 @@ println(1 / 2)        // 0          ← what the line prints
 Metals (VS Code) and IntelliJ both understand scala-cli. Because every file is an independent
 program with its own dependencies, open a single lesson directory, or run
 `scala-cli setup-ide <file>` for the file you are studying.
+
+## Agents
+
+Phases 1 through 19 are done. Phases 20 through 49 are defined in `Docs/antigravity_long_haul_program.md`.
+
