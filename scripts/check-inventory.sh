@@ -28,7 +28,7 @@ while IFS= read -r f; do
     exit 1
   fi
 done < <(find lessons ecosystem -name '*.scala' 2>/dev/null \
-  | grep -v -E '/sbt-project/|/mill-project/|/macros/|/\.scala-build/' \
+  | grep -v -E '/sbt-project/|/mill-project/|/cross-project/|/macros/|/\.scala-build/' \
   | sort)
 
 # Check 2: Backtick spans in README.md referencing lessons/ or ecosystem/ *.scala files
