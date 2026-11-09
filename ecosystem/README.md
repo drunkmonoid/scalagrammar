@@ -54,6 +54,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | File | What it shows |
 |------|---------------|
 | `ox.scala` | structured concurrency on virtual threads (JDK 21): `supervised`/`fork`/`forkUser`, `par`, `raceSuccess`, `timeoutOption`, `mapPar`, retries, channels, Flows |
+| `02_ox_select.scala` | channel multiplexing with `select` across multiple Ox channels |
 
 ## JSON — `json/`
 
