@@ -49,7 +49,7 @@ current releases as of November 2026.
 | 02 | **Functions** | methods & parameters · function values · higher-order functions & currying · by-name & laziness · recursion & tailrec · partial functions · `lessons/02-functions/07_dependent_functions.scala` |
 | 03 | **OOP** | classes · objects & companions · traits & linearization · case classes · inheritance & init order · enums & ADTs · access modifiers · extension methods · export clauses · universal apply / creator applications |
 | 04 | **Pattern matching** | every pattern form · extractors · exhaustiveness & sealed · type tests & erasure |
-| 05 | **Collections** | hierarchy · sequences · sets & maps · the operations catalogue · views, iterators, LazyList · mutable collections · Arrays (the weird one) · performance & pitfalls |
+| 05 | **Collections** | hierarchy · sequences · sets & maps · the operations catalogue · views, iterators, LazyList · mutable collections · Arrays (the weird one) · performance & pitfalls · `lessons/05-collections/08_factories.scala` |
 | 06 | **Types** | type hierarchy · generics & variance · bounds · type members & path-dependent types · union & intersection · higher-kinded types · type lambdas & match types · structural types · singleton & literal types · opaque types (polymorphic function types are in 02, dependent function types in `lessons/02-functions/07_dependent_functions.scala`) |
 | 07 | **Contextual abstractions** | given/using · type classes · derivation & Mirrors · implicit conversions · context functions · given imports & resolution rules |
 | 08 | **Errors** | exceptions · Option/Either/Try · boundary/break · accumulating validation |
