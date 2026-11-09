@@ -149,6 +149,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_collections.bench.scala` | JMH microbenchmarks with `scala-cli --power run --jmh`: List vs Vector append, Array.sum vs while loop |
 
+## Streaming — `streaming/`
+
+| File | What it shows |
+|------|---------------|
+| `01_kafka_streams.scala` | brokerless Kafka Streams word-count topology testing using TopologyTestDriver |
+
 ## Other platforms — `platforms/`
 
 | File | What it shows |
