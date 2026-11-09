@@ -84,6 +84,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | `01_os_lib_requests.scala` | os-lib paths, files, walking, subprocesses with stdin/stdout; `requests` HTTP client against a local server |
 | `02_fastparse.scala` | parser combinators: an arithmetic evaluator, cuts and error messages, whitespace-aware config parser |
 | `03_mainargs.scala` | CLI parsing with mainargs: subcommands, flags, in-process parsing, and formatted usage docs |
+| `04_cask.scala` | Cask web framework: GET/POST routes, JSON endpoints, ephemeral port binding, and request client |
 
 ## Data — `data/`
 
