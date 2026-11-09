@@ -121,6 +121,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_monocle.scala` | functional optics with Monocle: deeply nested Lens updates and Optional / Prism |
 
+## Parsing — `parsing/`
+
+| File | What it shows |
+|------|---------------|
+| `01_cats_parse.scala` | functional parser combinators with cats-parse: typed AST results and offset-based error reporting |
+
 ## Other platforms — `platforms/`
 
 | File | What it shows |
