@@ -46,3 +46,4 @@ To run all exercises across the repository, use:
 | `11-advanced` | `ex01_state_monad`, `ex02_strict_equality`, `ex03_named_stats` |
 | `12-scala2` | `ex01_implicit_class`, `ex02_implicit_param`, `ex03_implicit_conversion` |
 | `13-typelevel` | `ex01_validated_form`, `ex02_ref_counter`, `ex03_fs2_chunks` |
+| `14-zio-direct` | `ex01_zio_typed_errors`, `ex02_ox_par_timeout` |
