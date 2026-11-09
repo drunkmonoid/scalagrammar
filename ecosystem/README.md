@@ -161,5 +161,6 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_scala_js.scala` | Scala.js on Node.js: facades for JS globals and Node modules, `js.Dynamic`, exports, the `js.Date()` vs `new js.Date()` trap, number semantics that differ from the JVM |
 | `02_scala_native.scala` | Scala Native via LLVM: binding C functions, C strings and `Zone`s, pointers, `malloc`/`free`, stack allocation |
+| `03_laminar.scala` | reactive UI component testing with Laminar and jsdom under Node.js: state signals, synthetic clicks, and DOM text binding |
 
-Requirements: Node.js for Scala.js, clang/LLVM for Scala Native.
+Requirements: Node.js for Scala.js (and `npm install jsdom` for Laminar), clang/LLVM for Scala Native.

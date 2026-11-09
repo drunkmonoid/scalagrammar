@@ -95,6 +95,10 @@ jobs:
             ${{ runner.os }}-coursier-
       - name: Run Scala.js
         run: ./run.sh ecosystem/platforms/01_scala_js.scala
+      - name: Install jsdom
+        run: npm install jsdom
+      - name: Run Laminar on jsdom
+        run: ./run.sh ecosystem/platforms/03_laminar.scala
       - name: Run Scala Native
         run: ./run.sh ecosystem/platforms/02_scala_native.scala
 

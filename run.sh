@@ -57,7 +57,7 @@ case "${1:-}" in
     dir="${2:-lessons}"
     failed=()
     while read -r f; do
-      if ((is_fast)) && [[ "$f" =~ 02_spark\.scala|01_scala_js\.scala|02_scala_native\.scala|\.bench\.scala$ ]]; then
+      if ((is_fast)) && [[ "$f" =~ 02_spark\.scala|01_scala_js\.scala|02_scala_native\.scala|03_laminar\.scala|\.bench\.scala$ ]]; then
         continue
       fi
       run_one "$f" || failed+=("$f")
