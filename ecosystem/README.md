@@ -135,6 +135,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_cats_parse.scala` | functional parser combinators with cats-parse: typed AST results and offset-based error reporting |
 
+## GraphQL — `graphql/`
+
+| File | What it shows |
+|------|---------------|
+| `01_caliban.scala` | type-safe GraphQL with Caliban: schema derivation from case classes, SDL rendering, queries with arguments, and validation error reporting |
+
 ## Benchmarks — `benchmarks/`
 
 | File | What it shows |
