@@ -103,6 +103,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_ciris.scala` | functional configuration with Ciris: error accumulation, file and property loading |
 
+## Logging — `logging/`
+
+| File | What it shows |
+|------|---------------|
+| `01_log4cats_scribe.scala` | structured logging with log4cats (SLF4J MDC) and direct-style logging with Scribe |
+
 ## Other platforms — `platforms/`
 
 | File | What it shows |
