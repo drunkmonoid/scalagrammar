@@ -91,6 +91,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | `01_doobie.scala` | doobie + in-memory H2: schema, inserts, batch updates, typed queries, composable fragments, joins, transaction rollback, why interpolation prevents SQL injection |
 | `02_spark.scala` | **Scala 2.13** Spark 4 in local mode: typed Datasets, DataFrames, SQL, window functions, query plans, RDD word count (first run downloads ~300 MB) |
 | `03_csv.scala` | streaming CSV encoding and lenient decoding with fs2-data-csv |
+| `04_slick.scala` | Slick functional-relational mapping on in-memory H2: schema, joins, query AST to SQL, and rollback transactions |
 
 ## Actors — `actors/`
 
