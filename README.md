@@ -12,6 +12,7 @@ scala-cli run lessons/01-basics/01_hello.scala
 ./run.sh variance            # runs the first lesson whose path contains "variance"
 ./run.sh --list              # list every lesson
 ./run.sh --all lessons/03-oop  # run every lesson under a directory (regression check)
+./run.sh --fast              # like --all, but skips spark, scala-js, and scala-native
 ./run.sh ecosystem/testing/munit.test.scala   # *.test.scala files run with `scala-cli test`
 ```
 

@@ -3,8 +3,9 @@
 #
 #   ./run.sh <path>              run a single file
 #   ./run.sh <fragment>          run the first lesson whose path contains <fragment>
-#   ./run.sh --list              list all lessons
+#   ./run.sh --list              list all lessons (use --fast to run without heavy targets)
 #   ./run.sh --all [dir]         run every lesson under dir (default: lessons), report failures
+#   ./run.sh --fast [dir]        like --all, but skips spark, scala-js, and scala-native
 #
 # Files ending in .test.scala are run with `scala-cli test`.
 set -euo pipefail
@@ -30,15 +31,21 @@ run_one() {
 
 case "${1:-}" in
   "" | -h | --help)
-    sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//'
+    sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'
     ;;
   --list)
     all_files lessons
+    echo "# Note: use --fast to skip spark, scala-js, and scala-native" >&2
     ;;
-  --all)
+  --all | --fast)
+    is_fast=0
+    [[ "$1" == "--fast" ]] && is_fast=1
     dir="${2:-lessons}"
     failed=()
     while read -r f; do
+      if ((is_fast)) && [[ "$f" =~ 02_spark\.scala|01_scala_js\.scala|02_scala_native\.scala ]]; then
+        continue
+      fi
       run_one "$f" || failed+=("$f")
     done < <({ find "$dir" -name '*.scala' | grep -v '/sbt-project/\|/mill-project/\|/macros/'
                find "$dir" -type d -name macros -not -path '*/.scala-build/*'; } | sort)
