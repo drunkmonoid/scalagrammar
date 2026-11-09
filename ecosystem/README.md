@@ -97,6 +97,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | File | What it shows |
 |------|---------------|
 | `01_pekko_typed.scala` | Apache Pekko typed actors: behaviors as state, tell & ask, child actors, supervision with restart, serial message processing, timers |
+| `02_pekko_streams_http.scala` | Pekko Streams (throttle, mapAsync, grouped) and Pekko HTTP server/client on port 0 with JSON route |
 
 ## Refined types — `refined/`
 
