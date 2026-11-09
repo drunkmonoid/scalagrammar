@@ -92,6 +92,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | `02_spark.scala` | **Scala 2.13** Spark 4 in local mode: typed Datasets, DataFrames, SQL, window functions, query plans, RDD word count (first run downloads ~300 MB) |
 | `03_csv.scala` | streaming CSV encoding and lenient decoding with fs2-data-csv |
 | `04_slick.scala` | Slick functional-relational mapping on in-memory H2: schema, joins, query AST to SQL, and rollback transactions |
+| `05_skunk.scala` | pure functional Postgres with Skunk and embedded-postgres: codecs, prepared statements, and transactional rollback |
 
 ## Actors — `actors/`
 
