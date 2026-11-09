@@ -37,3 +37,4 @@ To run all exercises across the repository, use:
 | `02-functions` | `ex01_compose_all`, `ex02_retry`, `ex03_digits`, `ex04_collect_lengths` |
 | `03-oop` | `ex01_stackable`, `ex02_percentage`, `ex03_traffic_light`, `ex04_is_prime` |
 | `04-pattern-matching` | `ex01_email_extractor`, `ex02_describe_list`, `ex03_expr_eval` |
+| `05-collections` | `ex01_top_words`, `ex02_group_runs`, `ex03_window_max`, `ex04_primes` |
