@@ -112,7 +112,7 @@ program with its own dependencies, open a single lesson directory, or run
 
 ## Agents
 
-Phases 1 through 19 are done. Phases 20 through 49 are defined in `Docs/antigravity_long_haul_program.md`.
+Phases 1 through 19 are done. Phases 20 through 49 are defined in `Docs/antigravity_long_haul_program.md`. Phases 50–87 are `Docs/long_haul_program_2.md`.
 
 ## Glossary
 
