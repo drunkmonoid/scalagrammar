@@ -1,0 +1,154 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check inventory
+        run: ./scripts/check-inventory.sh
+
+  lessons:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - uses: VirtusLab/scala-cli-setup@v1
+        with:
+          jvm: 'temurin:21'
+      - name: Cache Coursier
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.local/share/coursier
+          key: ${{ runner.os }}-coursier-${{ hashFiles('**/*.scala') }}
+          restore-keys: |
+            ${{ runner.os }}-coursier-
+      - name: Run lessons
+        run: ./run.sh --all lessons
+
+  ecosystem:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - uses: VirtusLab/scala-cli-setup@v1
+        with:
+          jvm: 'temurin:21'
+      - name: Cache Coursier
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.local/share/coursier
+          key: ${{ runner.os }}-coursier-${{ hashFiles('**/*.scala') }}
+          restore-keys: |
+            ${{ runner.os }}-coursier-
+      - name: Run fast ecosystem
+        run: ./run.sh --fast ecosystem
+
+  platforms:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install clang
+        run: sudo apt-get update && sudo apt-get install -y clang
+      - uses: VirtusLab/scala-cli-setup@v1
+        with:
+          jvm: 'temurin:21'
+      - name: Cache Coursier
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.local/share/coursier
+          key: ${{ runner.os }}-coursier-${{ hashFiles('**/*.scala') }}
+          restore-keys: |
+            ${{ runner.os }}-coursier-
+      - name: Run Scala.js
+        run: ./run.sh ecosystem/platforms/01_scala_js.scala
+      - name: Run Scala Native
+        run: ./run.sh ecosystem/platforms/02_scala_native.scala
+
+  build-tools:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - uses: VirtusLab/scala-cli-setup@v1
+        with:
+          jvm: 'temurin:21'
+      - name: Cache Coursier
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.local/share/coursier
+          key: ${{ runner.os }}-coursier-${{ hashFiles('**/*.scala', '**/*.sbt', '**/build.mill') }}
+          restore-keys: |
+            ${{ runner.os }}-coursier-
+      - name: Run sbt sample project
+        run: |
+          cd ecosystem/build-tools/sbt-project
+          scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class xsbt.boot.Boot -- test app/run
+      - name: Run Mill sample project
+        run: |
+          cd ecosystem/build-tools/mill-project
+          ./mill core.test app.run
+
+  spark:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - uses: VirtusLab/scala-cli-setup@v1
+        with:
+          jvm: 'temurin:21'
+      - name: Cache Coursier
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.local/share/coursier
+          key: ${{ runner.os }}-coursier-${{ hashFiles('**/*.scala') }}
+          restore-keys: |
+            ${{ runner.os }}-coursier-
+      - name: Run Spark
+        run: ./run.sh ecosystem/data/02_spark.scala
