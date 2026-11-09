@@ -40,6 +40,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | `03_cats_effect.scala` | IO laziness, errors, Resource, fibers (`parTupled`, `race`, `start`/`join`, `timeout`), cancellation, Ref/Deferred/Queue/Semaphore, retry with backoff |
 | `04_fs2_streams.scala` | pure & effectful streams, resource safety, `parEvalMap`, `merge`, `groupWithin`, interruption, file I/O, pipes |
 | `05_cats_effect_runtime.scala` | Cats Effect runtime utilities: IOLocal fiber isolation, Supervisor scope cancellation, Dispatcher callback bridge |
+| `06_fs2_pulls.scala` | fs2 stream construction with Pull, Chunk boundaries, and cancellation with interruptScope |
 
 ## ZIO — `zio/`
 
