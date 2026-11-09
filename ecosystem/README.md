@@ -109,6 +109,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_log4cats_scribe.scala` | structured logging with log4cats (SLF4J MDC) and direct-style logging with Scribe |
 
+## Object mapping — `mapping/`
+
+| File | What it shows |
+|------|---------------|
+| `01_chimney.scala` | boilerplate-free data transformation with Chimney: field mapping, renaming, and partial transformers |
+
 ## Other platforms — `platforms/`
 
 | File | What it shows |
