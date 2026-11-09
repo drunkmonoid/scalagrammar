@@ -51,7 +51,7 @@ current releases as of November 2026.
 | 04 | **Pattern matching** | every pattern form · extractors · exhaustiveness & sealed · type tests & erasure |
 | 05 | **Collections** | hierarchy · sequences · sets & maps · the operations catalogue · views, iterators, LazyList · mutable collections · Arrays (the weird one) · performance & pitfalls · `lessons/05-collections/08_factories.scala` |
 | 06 | **Types** | type hierarchy · generics & variance · bounds · type members & path-dependent types · union & intersection · higher-kinded types · type lambdas & match types · structural types · singleton & literal types · opaque types (polymorphic function types are in 02, dependent function types in `lessons/02-functions/07_dependent_functions.scala`) |
-| 07 | **Contextual abstractions** | given/using · type classes · derivation & Mirrors · implicit conversions · context functions · given imports & resolution rules |
+| 07 | **Contextual abstractions** | given/using · type classes · derivation & Mirrors · implicit conversions · context functions · given imports & resolution rules · `lessons/07-contextual/07_notgiven.scala` |
 | 08 | **Errors** | exceptions · Option/Either/Try · boundary/break · accumulating validation |
 | 09 | **Concurrency** | threads, JMM, synchronization · Futures & Promises · virtual threads (structured concurrency: see Ox in Part II) |
 | 10 | **Metaprogramming** | inline · compiletime ops · quoted macros · TASTy reflection · annotations |
