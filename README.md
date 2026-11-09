@@ -39,6 +39,23 @@ current releases as of November 2026.
 
 ---
 
+## First ten files
+
+If you are new to Scala 3 or want the quickest on-ramp, start with these ten lessons in order. The curriculum table below is the full reference.
+
+1. `lessons/01-basics/01_hello.scala`
+2. `lessons/01-basics/02_values_variables.scala`
+3. `lessons/01-basics/03_types_literals.scala`
+4. `lessons/01-basics/05_control_flow.scala`
+5. `lessons/02-functions/01_methods.scala`
+6. `lessons/03-oop/04_case_classes.scala`
+7. `lessons/04-pattern-matching/01_patterns.scala`
+8. `lessons/06-types/02_generics_variance.scala`
+9. `lessons/07-contextual/01_given_using.scala`
+10. `lessons/08-errors/02_option_either_try.scala`
+
+---
+
 ## Curriculum
 
 ### Part I — The language (`lessons/`)

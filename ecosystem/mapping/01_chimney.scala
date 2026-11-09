@@ -1,5 +1,6 @@
 //> using scala 3.9.0
 //> using dep io.scalaland::chimney:1.7.3
+// See also: lessons/03-oop/04_case_classes.scala
 // Run: scala-cli run ecosystem/mapping/01_chimney.scala
 //
 // Boilerplate-free data mapping with Chimney: automatic transformations, field renaming, and partial transformations.

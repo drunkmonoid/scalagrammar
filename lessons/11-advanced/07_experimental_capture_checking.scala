@@ -1,5 +1,6 @@
 //> using scala 3.9.0
 //> using options -experimental -language:experimental.into
+// See also: lessons/01-basics/03_types_literals.scala
 // Run: scala-cli run lessons/11-advanced/07_experimental_capture_checking.scala
 //
 // Experimental features are compiled only with -experimental (or inside an

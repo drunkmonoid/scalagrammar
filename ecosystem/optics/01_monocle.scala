@@ -1,6 +1,7 @@
 //> using scala 3.9.0
 //> using dep dev.optics::monocle-core:3.3.0
 //> using dep dev.optics::monocle-macro:3.3.0
+// See also: lessons/03-oop/04_case_classes.scala
 // Run: scala-cli run ecosystem/optics/01_monocle.scala
 //
 // Functional optics with Monocle: composable Lenses for nested immutability and Optionals.
