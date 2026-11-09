@@ -115,6 +115,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_chimney.scala` | boilerplate-free data transformation with Chimney: field mapping, renaming, and partial transformers |
 
+## Optics — `optics/`
+
+| File | What it shows |
+|------|---------------|
+| `01_monocle.scala` | functional optics with Monocle: deeply nested Lens updates and Optional / Prism |
+
 ## Other platforms — `platforms/`
 
 | File | What it shows |
