@@ -72,7 +72,7 @@ If you are new to Scala 3 or want the quickest on-ramp, start with these ten les
 | 08 | **Errors** | exceptions · Option/Either/Try · boundary/break · accumulating validation |
 | 09 | **Concurrency** | threads, JMM, synchronization · Futures & Promises · virtual threads (structured concurrency: see Ox in Part II) |
 | 10 | **Metaprogramming** | inline · compiletime ops · quoted macros · TASTy reflection · annotations · `lessons/10-metaprogramming/04_staging.scala` |
-| 11 | **Advanced** | for-comprehension desugaring · multiversal equality · named tuples · Java interop · tuples as HLists · explicit nulls · capture checking & other experimental features · puzzlers · `lessons/11-advanced/09_dynamic.scala` · `lessons/11-advanced/10_processes_and_io.scala` · `lessons/11-advanced/11_overloading_inference.scala` |
+| 11 | **Advanced** | for-comprehension desugaring · multiversal equality · named tuples · Java interop · tuples as HLists · explicit nulls · capture checking & other experimental features · puzzlers · `lessons/11-advanced/09_dynamic.scala` · `lessons/11-advanced/10_processes_and_io.scala` · `lessons/11-advanced/11_overloading_inference.scala` · `lessons/11-advanced/12_safe_init.scala` |
 | 12 | **Scala 2** | implicits & 2.x idioms · migration to Scala 3 |
 
 ### Part II — The ecosystem (`ecosystem/`)
