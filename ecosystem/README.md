@@ -97,6 +97,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_iron.scala` | Iron: compile-time checked constants, runtime refinement with Either/Option, `RefinedType` newtypes, zero runtime overhead |
 
+## Configuration — `config/`
+
+| File | What it shows |
+|------|---------------|
+| `01_ciris.scala` | functional configuration with Ciris: error accumulation, file and property loading |
+
 ## Other platforms — `platforms/`
 
 | File | What it shows |
