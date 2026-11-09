@@ -70,6 +70,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_http4s.scala` | http4s routes DSL, path/query extractors, JSON bodies, 400 on bad input, Logger middleware, Ember server + client wired with Resource |
 | `02_tapir_sttp.scala` | tapir endpoints as values → Netty direct-style server, typed sttp client and OpenAPI YAML, all from the same definitions |
+| `03_http4s_middleware.scala` | http4s authentication middleware: checking headers and responding with 401 Unauthorized |
 
 ## Li Haoyi stack — `lihaoyi/`
 
