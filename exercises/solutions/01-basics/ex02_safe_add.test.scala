@@ -1,0 +1,27 @@
+//> using scala 3.9.0
+//> using test.dep org.scalameta::munit:1.3.6
+// See also: lessons/01-basics/03_types_literals.scala
+
+package solutions.basics.safeadd
+
+def safeAdd(a: Int, b: Int): Option[Int] =
+  if b > 0 && a > Int.MaxValue - b then None
+  else if b < 0 && a < Int.MinValue - b then None
+  else Some(a + b)
+
+class SafeAddSuite extends munit.FunSuite:
+  test("adds within normal range") {
+    assertEquals(safeAdd(10, 20), Some(30))
+    assertEquals(safeAdd(-10, -20), Some(-30))
+    assertEquals(safeAdd(100, -50), Some(50))
+  }
+
+  test("overflow returns None") { // ⚠
+    assertEquals(safeAdd(Int.MaxValue, 1), None)
+    assertEquals(safeAdd(Int.MaxValue - 10, 20), None)
+  }
+
+  test("underflow returns None") { // ⚠
+    assertEquals(safeAdd(Int.MinValue, -1), None)
+    assertEquals(safeAdd(Int.MinValue + 5, -10), None)
+  }

@@ -77,7 +77,7 @@ if [[ -d exercises ]]; then
   # Check 4: Every stub contains ???; no solution contains ???
   while IFS= read -r stub; do
     [[ -z "$stub" ]] && continue
-    if ! grep -q '\?\?\?' "$stub"; then
+    if ! grep -F -q '???' "$stub"; then
       echo "Error: Stub '$stub' does not contain '???'" >&2
       exit 1
     fi
@@ -85,7 +85,7 @@ if [[ -d exercises ]]; then
 
   while IFS= read -r sol; do
     [[ -z "$sol" ]] && continue
-    if grep -q '\?\?\?' "$sol"; then
+    if grep -F -q '???' "$sol"; then
       echo "Error: Solution '$sol' unexpectedly contains '???'" >&2
       exit 1
     fi

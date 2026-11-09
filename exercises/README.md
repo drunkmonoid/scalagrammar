@@ -33,3 +33,4 @@ To run all exercises across the repository, use:
 
 | Section | Exercises |
 |---------|-----------|
+| `01-basics` | `ex01_fizzbuzz`, `ex02_safe_add`, `ex03_interpolator`, `ex04_first_duplicate` |
