@@ -39,3 +39,4 @@ To run all exercises across the repository, use:
 | `04-pattern-matching` | `ex01_email_extractor`, `ex02_describe_list`, `ex03_expr_eval` |
 | `05-collections` | `ex01_top_words`, `ex02_group_runs`, `ex03_window_max`, `ex04_primes` |
 | `06-types` | `ex01_box_variance`, `ex02_meters`, `ex03_elem_match_type`, `ex04_union_handler` |
+| `07-contextual` | `ex01_show_tree`, `ex02_json_derivation`, `ex03_at_least_one`, `ex04_context_function` |
