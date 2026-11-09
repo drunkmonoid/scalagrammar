@@ -31,6 +31,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 | `scalatest.test.scala` | FunSuite / FlatSpec / WordSpec styles, matchers, futures, pending & ignored |
 | `scalacheck.test.scala` | property-based testing, custom generators, shrinking |
 | `discipline.test.scala` | type class law testing with Discipline and MUnit: Functor laws and expected failures |
+| `munit_cats_effect.test.scala` | Cats Effect integration with MUnit: IO tests, Resource fixtures, and interceptIO |
 
 ## Typelevel stack — `typelevel/`
 
