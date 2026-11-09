@@ -52,6 +52,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_zio.scala` | `ZIO[R, E, A]`, typed errors vs defects, `validate`, ZLayer dependency injection, fibers (`<&>`, `foreachPar`, `race`, `timeout`, interruption), Ref, STM, Schedules, Scope, ZStream |
 | `02_zio_test.test.scala` | ZIO Test suite (ZIOSpecDefault): assertTrue, layer provisioning, typed error assertions |
+| `03_zio_http.scala` | ZIO HTTP server on port 0, zio-json codec routes, ZIO HTTP client, 404 responses, and scoped lifecycle |
 
 ## Direct style — `direct-style/`
 
