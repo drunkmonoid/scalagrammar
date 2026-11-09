@@ -36,3 +36,4 @@ To run all exercises across the repository, use:
 | `01-basics` | `ex01_fizzbuzz`, `ex02_safe_add`, `ex03_interpolator`, `ex04_first_duplicate` |
 | `02-functions` | `ex01_compose_all`, `ex02_retry`, `ex03_digits`, `ex04_collect_lengths` |
 | `03-oop` | `ex01_stackable`, `ex02_percentage`, `ex03_traffic_light`, `ex04_is_prime` |
+| `04-pattern-matching` | `ex01_email_extractor`, `ex02_describe_list`, `ex03_expr_eval` |
