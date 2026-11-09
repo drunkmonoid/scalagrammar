@@ -42,3 +42,4 @@ To run all exercises across the repository, use:
 | `07-contextual` | `ex01_show_tree`, `ex02_json_derivation`, `ex03_at_least_one`, `ex04_context_function` |
 | `08-errors` | `ex01_parse_config`, `ex02_using_order`, `ex03_try_to_either` |
 | `09-concurrency` | `ex01_parallel_sum`, `ex02_first_success`, `ex03_counter` |
+| `10-metaprogramming` | `ex01_inline_power`, `ex02_tuple_size`, `ex03_checked_port` |
