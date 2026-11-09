@@ -128,6 +128,30 @@ jobs:
           cd ecosystem/build-tools/mill-project
           ./mill core.test app.run
 
+  exercises:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - uses: VirtusLab/scala-cli-setup@v1
+        with:
+          jvm: 'temurin:21'
+      - name: Cache Coursier
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/coursier
+            ~/.local/share/coursier
+          key: ${{ runner.os }}-coursier-${{ hashFiles('**/*.scala') }}
+          restore-keys: |
+            ${{ runner.os }}-coursier-
+      - name: Run exercises
+        run: ./run.sh --exercises
+
   spark:
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest

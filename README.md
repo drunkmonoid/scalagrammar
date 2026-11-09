@@ -96,6 +96,12 @@ See [`ecosystem/README.md`](ecosystem/README.md) for notes on each.
 
 ---
 
+## Exercises
+
+Hands-on practice exercises with stubs and working solutions: see [`exercises/README.md`](exercises/README.md).
+
+---
+
 ## Conventions used in comments
 
 ```scala

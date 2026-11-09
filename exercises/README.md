@@ -1,0 +1,35 @@
+# Exercises
+
+How to work through the exercises:
+
+Run a stub with `./run.sh <stub>`, read the failing tests, fill in the `???`, and repeat until green. Compare with the solution only after that.
+
+To run all exercises across the repository, use:
+
+```bash
+./run.sh --exercises
+```
+
+---
+
+### Exercise contract
+
+- A **stub** lives at `exercises/<NN-section>/<exNN_name>.test.scala`.
+- Its **solution** lives at the mirrored path `exercises/solutions/<NN-section>/<exNN_name>.test.scala`.
+- Both start with `//> using scala 3.9.0` and `//> using test.dep org.scalameta::munit:1.3.6`, plus any deps the exercise needs. Both files have identical directives.
+- Packages: the stub is `exercises.<section>.<name>`. The solution is `solutions.<section>.<name>`. Section and name are lowercase identifiers without the number prefix.
+- Both carry `// See also: <lesson path>`.
+- The stub opens with a comment block headed `// Task:` that states what to implement, in plain sentences, with one example input and output.
+- In the stub, every definition the reader writes has body `???`. The one exception is a "make this compile" exercise, where the definition is absent and the `// Task:` block names it. The stub still contains `???` somewhere, compiles, and at least one of its tests fails.
+- The test class is `class <Name>Suite extends munit.FunSuite` (or the suite type the phase names). The test bodies in the stub and the solution are character-for-character identical. Only the definitions under test differ.
+- Each exercise has at least three tests. At least one is a corner case, marked `// ⚠` in the test.
+- The solution contains no `???`, and all its tests pass.
+- For "make this compile" exercises, the test is `assertNoDiff(compileErrors("<snippet>"), "")`. The snippet uses fully qualified names, because `compileErrors` (like `typeCheckErrors`) cannot see local definitions. The reader's definition must be top-level in the exercise's package.
+- An exercise never needs network access, a server on a fixed port, or more than 30 seconds.
+
+---
+
+## Exercise Index
+
+| Section | Exercises |
+|---------|-----------|
