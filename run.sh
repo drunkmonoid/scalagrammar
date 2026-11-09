@@ -25,6 +25,8 @@ run_one() {
     scala-cli run --server=false "$f"   # multi-file lessons (macros/): see macros/project.scala
   elif [[ "$f" == *.test.scala ]]; then
     scala-cli test "$f"
+  elif [[ "$f" == *.bench.scala ]]; then
+    scala-cli --power run --jmh "$f" -- -wi 1 -i 2 -f 1 -w 1s -r 1s
   else
     scala-cli run "$f"
   fi
@@ -55,7 +57,7 @@ case "${1:-}" in
     dir="${2:-lessons}"
     failed=()
     while read -r f; do
-      if ((is_fast)) && [[ "$f" =~ 02_spark\.scala|01_scala_js\.scala|02_scala_native\.scala ]]; then
+      if ((is_fast)) && [[ "$f" =~ 02_spark\.scala|01_scala_js\.scala|02_scala_native\.scala|\.bench\.scala$ ]]; then
         continue
       fi
       run_one "$f" || failed+=("$f")
