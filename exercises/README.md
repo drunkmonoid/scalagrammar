@@ -43,3 +43,4 @@ To run all exercises across the repository, use:
 | `08-errors` | `ex01_parse_config`, `ex02_using_order`, `ex03_try_to_either` |
 | `09-concurrency` | `ex01_parallel_sum`, `ex02_first_success`, `ex03_counter` |
 | `10-metaprogramming` | `ex01_inline_power`, `ex02_tuple_size`, `ex03_checked_port` |
+| `11-advanced` | `ex01_state_monad`, `ex02_strict_equality`, `ex03_named_stats` |
