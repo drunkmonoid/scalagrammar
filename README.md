@@ -82,15 +82,25 @@ If you are new to Scala 3 or want the quickest on-ramp, start with these ten les
 | `build-tools/` | scala-cli directives · sbt 1.13 multi-module project · Mill 1.3 project |
 | `testing/` | MUnit · ScalaTest · ScalaCheck (property testing) |
 | `typelevel/` | cats type classes · cats data types · cats-effect (IO, fibers, Resource) · fs2 streams |
-| `zio/` | ZIO: typed errors, layers, fibers, STM, schedules, ZStream |
+| `zio/` | ZIO: typed errors, layers, fibers, STM, schedules, ZStream · ZIO HTTP |
 | `direct-style/` | Ox: structured concurrency on virtual threads |
 | `json/` | circe · upickle · jsoniter-scala |
 | `http/` | http4s server + client · tapir endpoints → server, sttp client, OpenAPI |
-| `lihaoyi/` | os-lib · requests · fastparse |
-| `data/` | doobie (in-memory H2) · Spark (Scala 2.13, local mode) |
-| `actors/` | Apache Pekko typed actors |
+| `lihaoyi/` | os-lib · requests · fastparse · Cask |
+| `data/` | doobie (in-memory H2) · Spark (Scala 2.13, local mode) · CSV · Slick · Skunk (embedded Postgres) |
+| `actors/` | Apache Pekko typed actors · Pekko Streams & HTTP |
 | `refined/` | Iron refined types |
-| `platforms/` | Scala.js · Scala Native |
+| `config/` | Ciris functional configuration |
+| `logging/` | log4cats & Scribe |
+| `mapping/` | Chimney |
+| `optics/` | Monocle |
+| `parsing/` | cats-parse |
+| `graphql/` | Caliban in-process GraphQL |
+| `benchmarks/` | JMH microbenchmarks |
+| `streaming/` | Kafka Streams with TopologyTestDriver |
+| `api/` | Smithy4s dynamic schemas |
+| `derivation/` | Magnolia generic derivation |
+| `platforms/` | Scala.js · Scala Native · Laminar on jsdom |
 
 See [`ecosystem/README.md`](ecosystem/README.md) for notes on each.
 

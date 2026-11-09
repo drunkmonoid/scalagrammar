@@ -133,3 +133,67 @@ Demonstrated in: [`ecosystem/zio/01_zio.scala`](ecosystem/zio/01_zio.scala)
 ### Iron
 A zero-overhead compile-time and runtime type refinement library for Scala 3 powered by inline methods and opaque types.  
 Demonstrated in: [`ecosystem/refined/01_iron.scala`](ecosystem/refined/01_iron.scala)
+
+### exercise stub
+A starter test file containing `???` definitions and failing tests that a reader implements, paired with an exact mirrored solution.  
+Demonstrated in: [`exercises/README.md`](exercises/README.md)
+
+### overloading resolution
+The compiler process of selecting the most specific method alternative among overloads, influenced by parameter type inference across argument lists and SAM conversions.  
+Demonstrated in: [`lessons/11-advanced/11_overloading_inference.scala`](lessons/11-advanced/11_overloading_inference.scala)
+
+### given priority
+The rules determining which contextual instance the compiler chooses when multiple candidates are in scope, where lexical nesting and subtype specificity take precedence.  
+Demonstrated in: [`lessons/07-contextual/08_given_priority.scala`](lessons/07-contextual/08_given_priority.scala)
+
+### `-Wsafe-init`
+The Scala 3 compiler flag activating the safe initialization checker, detecting uninitialized field reads, forward references, and virtual method dispatches during construction.  
+Demonstrated in: [`lessons/11-advanced/12_safe_init.scala`](lessons/11-advanced/12_safe_init.scala)
+
+### lint
+Compiler diagnostic flags (such as `-Wunused:all`, `-Wvalue-discard`, and `-Wnonunit-statement`) that catch potential bugs, dead code, and unhandled expressions at compile time.  
+Demonstrated in: [`lessons/11-advanced/13_lints.scala`](lessons/11-advanced/13_lints.scala)
+
+### `javap`
+The Java class file disassembler used to inspect compiled JVM bytecode, synthetic methods, singleton `MODULE$` fields, and inlined method call sites.  
+Demonstrated in: [`lessons/11-advanced/14_bytecode.scala`](lessons/11-advanced/14_bytecode.scala)
+
+### JMH
+The Java Microbenchmark Harness, providing isolated JVM forks, warm-up iterations, and dead-code elimination safeguards via `Blackhole` for reliable benchmarking.  
+Demonstrated in: [`ecosystem/benchmarks/01_collections.bench.scala`](ecosystem/benchmarks/01_collections.bench.scala)
+
+### equality contract
+The mathematical equivalence relation requirement (`reflexive`, `symmetric`, `transitive`, `consistent`) for `equals` and `hashCode`, preserved in subtyping hierarchies via `canEqual`.  
+Demonstrated in: [`lessons/11-advanced/15_equality_contracts.scala`](lessons/11-advanced/15_equality_contracts.scala)
+
+### numeric tower
+The algebraic hierarchy of generic numeric type classes (`Numeric`, `Integral`, `Fractional`) and floating-point total orderings vs IEEE 754 NaN semantics.  
+Demonstrated in: [`lessons/11-advanced/16_numeric_tower.scala`](lessons/11-advanced/16_numeric_tower.scala)
+
+### Pekko Streams
+A reactive streams implementation on the Apache Pekko actor foundation providing backpressured asynchronous streaming, throttling, and concurrent stages.  
+Demonstrated in: [`ecosystem/actors/02_pekko_streams_http.scala`](ecosystem/actors/02_pekko_streams_http.scala)
+
+### GraphQL
+A query language and execution engine for APIs providing schema-driven querying; in Scala, Caliban derives type-safe GraphQL schemas directly from case classes.  
+Demonstrated in: [`ecosystem/graphql/01_caliban.scala`](ecosystem/graphql/01_caliban.scala)
+
+### embedded Postgres
+An in-process PostgreSQL database runner (`io.zonky.test:embedded-postgres`) that downloads and executes native PostgreSQL binaries for brokerless integration testing.  
+Demonstrated in: [`ecosystem/data/05_skunk.scala`](ecosystem/data/05_skunk.scala)
+
+### `TopologyTestDriver`
+The Kafka Streams test utility that executes a streaming topology synchronously and deterministically in-memory without requiring a running Kafka broker cluster.  
+Demonstrated in: [`ecosystem/streaming/01_kafka_streams.scala`](ecosystem/streaming/01_kafka_streams.scala)
+
+### Laminar
+A reactive UI library for Scala.js built on Airstream signals and observable streams, enabling declarative DOM manipulation with zero virtual-DOM overhead.  
+Demonstrated in: [`ecosystem/platforms/03_laminar.scala`](ecosystem/platforms/03_laminar.scala)
+
+### Smithy4s
+A Scala code-generation and dynamic interpretation library for AWS Smithy interface definition models, providing dynamic schema codecs without build-time compilation.  
+Demonstrated in: [`ecosystem/api/01_smithy4s.scala`](ecosystem/api/01_smithy4s.scala)
+
+### Magnolia
+A fast, macro-based generic type class derivation library for Scala providing `join` and `split` combinators for automated product and sum typeclass generation.  
+Demonstrated in: [`ecosystem/derivation/01_magnolia.scala`](ecosystem/derivation/01_magnolia.scala)
