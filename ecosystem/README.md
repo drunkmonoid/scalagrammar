@@ -163,6 +163,12 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_smithy4s.scala` | dynamic Smithy model loading with smithy4s-dynamic, Document encoding/decoding, and schema validation errors |
 
+## Derivation — `derivation/`
+
+| File | What it shows |
+|------|---------------|
+| `01_magnolia.scala` | generic type class derivation with Magnolia: join for case classes, split for sealed traits/enums, and comparison with Mirror |
+
 ## Other platforms — `platforms/`
 
 | File | What it shows |
