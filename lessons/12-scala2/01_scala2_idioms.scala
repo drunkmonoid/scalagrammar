@@ -1,4 +1,4 @@
-//> using scala 2.13.16
+//> using scala 2.13.17
 // Run: scala-cli run lessons/12-scala2/01_scala2_idioms.scala
 //
 // THIS FILE IS SCALA 2.13. Much production code (and Spark, and many libraries' sources)

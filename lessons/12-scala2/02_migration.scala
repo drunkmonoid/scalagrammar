@@ -9,7 +9,7 @@
 //       scala-cli compile . -O -source:3.0-migration -O -rewrite
 //   * `-rewrite -indent` / `-rewrite -new-syntax` modernise syntax afterwards
 //   * Scalafix rules (e.g. for implicits → givens) and the sbt-scala3-migrate plugin
-//   * Cross-build: sbt `crossScalaVersions := Seq("2.13.16", "3.9.0")`, and
+//   * Cross-build: sbt `crossScalaVersions := Seq("2.13.17", "3.9.0")`, and
 //     src/main/scala-2 / src/main/scala-3 folders for version-specific code
 //
 // COMPATIBILITY
