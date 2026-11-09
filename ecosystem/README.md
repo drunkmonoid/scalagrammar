@@ -62,6 +62,7 @@ scala-cli run --server=false --dep org.scala-sbt:sbt-launch:1.13.1 --main-class 
 |------|---------------|
 | `01_circe.scala` | building JSON, derived & hand-written codecs, decoding errors (fail-fast and accumulating), cursors, transformations, null handling |
 | `02_upickle_jsoniter.scala` | upickle `ReadWriter` (defaults, error paths), the mutable `ujson` AST, MessagePack; jsoniter-scala macro codecs; how to choose |
+| `03_iron_circe.scala` | decoding refined types with Iron and circe: constraint validation and error reporting |
 
 ## HTTP — `http/` (everything runs locally on a random port)
 
